@@ -1,0 +1,122 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+</head>
+<body class="fluig-style-guide">
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<div class="container-fluid">
+				<h1 style="text-align: center;">Contratação de Consultoria e/ou Instrutoria SGF</h1>
+			</div>
+			<div class="panel panel-default" id="divDadoSolicitacao">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a class="collapse-icon up" data-toggle="collapse" data-parent="#accordion" href="#collapseDivDadosDemanda">
+							<span class="flaticon flaticon-desktop-list icon-sm"></span> DADOS DA SOLICITAÇÃO
+						</a>
+					</h3>
+				</div>
+				<div id="collapseDivDadosDemanda" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="panel panel-info" id="aval_atendimento">
+							<div class="panel-heading">
+								<h3 class="panel-title">					    			
+									<a class="collapse-icon up" data-toggle="collapse" data-parent="#accordion" href="#collapseDivUsuario">
+										<span class="flaticon flaticon-person-add icon-sm"></span> USUÁRIO/CRIAÇÃO
+									</a>
+								</h3>
+							</div>
+							
+							<div id="collapseDivUsuario" class="panel-collapse collapse in">
+							
+								<div class="panel-body">
+									
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="tbNomePessoa"><b>Nome</b></label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<span class="flaticon flaticon-person"></span>
+												</span>
+												<input type="text" class="form-control" id="tbNomePessoa" name="tbNomePessoa" readonly>
+											</div>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="solicitanteEmail"><b>E-mail</b></label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<span class="flaticon flaticon-mail"></span>
+												</span>
+												<input type="text" class="form-control" id="solicitanteEmail" name="solicitanteEmail" readonly>
+												<input type="hidden" class="form-control" id="solicitanteChapa" name="solicitanteChapa" readonly>
+											</div>	                                                       
+										</div>
+										<div class="col-xs-12 col-sm-6 col-md-2">
+											<div class="form-group fs-cursor-pointer">
+												<label>Data da Solicitação</label><span class="required text-danger"><strong>*</strong></span>
+												<div class="input-group date">
+													<input class="form-control" id="dataEvento" name="dataEvento" type="text" readonly>
+													<span class="input-group-addon"> <span
+														class="fluigicon fluigicon-calendar"></span>
+													</span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-xs-12 col-sm-6 col-md-2">
+											<div class="form-input">
+												<div class="form-group"><label>Nº Processo</label>
+													<input type="text" class="form-control" id="tbProtocolo" name="tbProtocolo" value="" placeholder="" data-size="big" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">	                           
+										<div class="form-group col-md-4">
+											<input class="form-control" type="hidden" id="CODGERENTE" name="CODGERENTE" />
+											<label class="control-label">Gerente</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<span class="flaticon flaticon-person icon-sm"></span>
+												</span>
+												<input name="nmGerente" id="nmGerente" class="form-control" type="text" readonly>
+										</div>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="solicitanteDepartamento"><b>Departamento</b></label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<span class="flaticon flaticon-company icon-sm"></span>
+												</span>
+												<input name="solicitanteDepartamento" id="solicitanteDepartamento" class="form-control" type="text" readonly>
+												<input name="solicitanteCodDepartamento" id="solicitanteCodDepartamento" class="form-control" type="hidden">
+										</div>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="solicitanteAgencia"><b>Unidade / Agência</b></label>
+											<div class="input-group">
+											<span class="input-group-addon">
+													<span class="flaticon flaticon-company"></span>
+												</span>
+											<input name="solicitanteAgencia" id="solicitanteAgencia" class="form-control" type="text" readonly>
+											</div>
+										</div>
+									</div>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
