@@ -1,12 +1,19 @@
 <html>
 <head>
-	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
-	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
-	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
-	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="https://fluig.sebraepb.com.br/resources/style-guide/css/fluig-style-guide.min.css">
+    <script src="https://fluig.sebraepb.com.br/resources/js/jquery/jquery.js"></script>
+    <script src="https://fluig.sebraepb.com.br/resources/js/jquery/jquery-ui.min.js"></script>
+    <script src="https://fluig.sebraepb.com.br/resources/js/mustache/mustache-min.js"></script>
+    <script src="https://fluig.sebraepb.com.br/resources/style-guide/js/fluig-style-guide.min.js"></script>
+    <!-- CUSTOM -->
+    <link href="https://fluig.sebraepb.com.br/resources/style-guide/css/fluig-style-guide-filter.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fluig.sebraepb.com.br/resources/style-guide/css/fluig-style-guide-ratingstars.min.css" rel="stylesheet" type="text/css">
+    <script src="https://fluig.sebraepb.com.br/resources/style-guide/js/fluig-style-guide-filter.min.js"></script>
+    <script src="https://fluig.sebraepb.com.br/resources/style-guide/js/fluig-style-guide-ratingstars.min.js"></script>
 	
 	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="comportamentoform.js" charset="utf-8"></script>
+	<script type="text/javascript" src="eventosform.js" charset="utf-8"></script>
 </head>
 <body class="fluig-style-guide">
 	<div class="fluig-style-guide">
@@ -34,9 +41,7 @@
 							</div>
 							
 							<div id="collapseDivUsuario" class="panel-collapse collapse in">
-							
 								<div class="panel-body">
-									
 									<div class="row">
 										<div class="form-group col-md-4">
 											<label for="tbNomePessoa"><b>Nome</b></label>
@@ -77,7 +82,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="row">	                           
 										<div class="form-group col-md-4">
 											<input class="form-control" type="hidden" id="CODGERENTE" name="CODGERENTE" />
@@ -109,7 +113,377 @@
 											</div>
 										</div>
 									</div>
-								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="collapseDivDadosEvento" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="panel panel-info" id="identicacao_evento">
+							<div class="panel-heading">
+								<h3 class="panel-title">					    			
+									<a class="collapse-icon up" data-toggle="collapse" data-parent="#accordion" href="#collapseDivEvento">
+										<span class="flaticon flaticon-person-add icon-sm"></span> IDENTIFICAÇÃO DO EVENTO
+									</a>
+								</h3>
+							</div>
+							
+							<div id="collapseDivEvento" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-12" >
+											<div class="form-input">
+												<div class="form-group">
+													<label for="switchEventoJaRealizado">Evento já realizado ou planejado anteriormente? </label>
+													<br>
+													<input id="switchEventoJaRealizado" name="switchEventoJaRealizado" type="checkbox" data-on-color="success" data-off-color="danger" data-on-text="Sim" 
+														data-off-text="Não" data-animate="true"  checked="false"  data-size="large">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row" id="div_selecaoEvento" style="display: none;">
+										<div class="col-xs-12 col-sm-12 col-md-12" data-type="zoomfield" data-show-properties="" data-field-name="">
+											<div class="form-input">
+												<div class="form-group">
+													<label for="zoom">Escolha o Evento:</label><span class="required text-danger"><strong>*</strong></span>
+													<div class="input-group">
+														<input type="zoom" name="tbEventoCadastrado" id="tbEventoCadastrado" 
+															data-zoom="{'displayKey':'TBNOMEEVENTO','datasetId':'rm_consulta_eventosplanejados',
+																'fields':[
+																	 {'field':'TBNOMEEVENTO','label':'Evento','standard':true}]}">
+														<div class="input-group-addon zoom-preview">
+															<span class="fluigicon fluigicon-zoom-in"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label for="tbNomeEvento"><b>Nome do evento:</b></label>
+											<input type="text" class="form-control camposEvento" id="tbNomeEvento" name="tbNomeEvento">
+										</div>
+										<div class="form-group col-md-12">
+											<label for="tbLocalEvento"><b>Local do evento:</b></label>
+											<input type="text" class="form-control camposEvento" id="tbLocalEvento" name="tbLocalEvento">
+										</div>
+										<div class="col-md-12" data-type="textarea" data-field-name="tbSinteseEvento">
+											<div class="form-input">
+												<div class="form-group">
+													<label>Síntese do Evento</label><span
+														class="required text-danger"><strong> *</strong></span>
+													<textarea class="form-control" rows="3" id="tbSinteseEvento"
+														name="tbSinteseEvento"
+														placeholder="Descreva de forma objetiva quais os principais resultados esperados com o o evento e a importância dessa iniciativa no desenvolvimento dos pequenos negócios e posicionamento da marca sebrae na região."></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4" data-type="date" data-show-properties="" data-field-name="tbDataInicio">
+											<div class="form-group fs-cursor-pointer">
+												<label>Período Inicial do Evento</label>
+												<span class="required text-danger"><strong>*</strong></span>
+												<div class="input-group date">
+													<input class="form-control" id="tbDataInicio" name="tbDataInicio" type="text">
+													<span class="input-group-addon"> 
+														<span class="fluigicon fluigicon-calendar"></span>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4" data-type="date" data-show-properties="" data-field-name="tbDataFim">
+											<div class="form-group fs-cursor-pointer">
+												<label>Período Inicial do Evento</label>
+												<span class="required text-danger"><strong>*</strong></span>
+												<div class="input-group date">
+													<input class="form-control" id="tbDataFim" name="tbDataFim" type="text">
+													<span class="input-group-addon"> 
+														<span class="fluigicon fluigicon-calendar"></span>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4" data-type="radio" data-show-properties="" data-field-name="tbTipoEvento">
+											<div class="form-input">
+												<div class="form-group">
+													<label>Tipo do Evento</label><span
+														class="required text-danger"><strong> *</strong></span>
+													<div class="radio-options">
+														<div class="radio">
+															<label><input type="radio" name="tbTipoEvento" id="tbTipoEventoM"
+																	value="M">Mercadológico
+																</label>
+															<label><input type="radio" name="tbTipoEvento" id="tbTipoEventoI"
+																	value="I">Institucional
+																</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row" id="div_botaoCarrregarDespesas" style="display: none;">
+										<div class="col-md-12" >
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">					    			
+														<span class="flaticon flaticon-person-add icon-sm"></span> NATUREZA DE DESPESAS EXECUTADAS NO ANO ANTERIOR
+													</h3>
+												</div>
+												<div class="panel-body">
+													<div class="row">
+														<div class="form-group col-md-12">
+															<button type="button" class="btn btn-success" id="btnCarregarDespesas"
+																onclick="carregarDespesas();">
+																CARREGAR DESPESAS <i class="fluigicon fluigicon-plus-sign icon-xs"></i>
+															</button>
+														</div>
+													</div>
+													<div class="row" id="div_tabelaDespesasCarregadas" style="display: none;">
+														<div class="col-xs-12 col-sm-12 col-md-12">
+															<table class="table table table-bordered" id="tableDespesasCarrregadas">
+																<thead>
+																	<tr class="success">
+																		<td width="10%"><b>COD</b></td>
+																		<td width="80%" style="text-align: center;"><b>NATUREZA DA DESPESA</b></td>
+																		<td width="10%" style="text-align: center;"><b>VALOR</b></td>
+																	</tr>
+																</thead>
+																<tbody id="despesasCarregadas">
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div id="collapseDivDadosDespesas" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="panel panel-info" id="despesas_evento">
+							<div class="panel-heading">
+								<h3 class="panel-title">					    			
+									<a class="collapse-icon up" data-toggle="collapse" data-parent="#accordion" href="#collapseDivDespesasEvento">
+										<span class="flaticon flaticon-person-add icon-sm"></span> NATUREZA DE DESPESAS PREVISTAS
+									</a>
+								</h3>
+							</div>
+							
+							<div id="collapseDivDespesasEvento" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-12" >
+											<div class="form-input">
+												<div class="form-group">
+													<label for="switchReutilizarDespesas">Deseja reutilizar as despesas executadas no ano anterior? </label>
+													<br>
+													<input id="switchReutilizarDespesas" name="switchReutilizarDespesas" type="checkbox" data-on-color="success" data-off-color="danger" data-on-text="Sim" 
+														data-off-text="Não" data-animate="true"  checked="false"  data-size="large">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row" id="div_detalhamento_despesas">
+										<div class="col-md-12">
+											<div class="panel panel-primary">
+												<div class="panel-heading" >
+													<h3 class="panel-title">Detalhamento das despesas</h3>
+												</div>
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-md-12">
+															<div class="col-xs-12 col-sm-12 col-md-12">
+																<table tablename="despesas" class="table table-striped Tabela" id="despesas" 
+																	noaddbutton="true" nodeletebutton="false" 
+																	customFnDelete="removeDespesa(this)">
+																	<thead>
+																		<tr><th></th></tr>
+																	</thead>
+																	<tbody id="tbodyDespesas">
+																		<tr>
+																			<td>
+																				
+																				<div class="row">
+																					<div class="col-md-8 form-group">
+																						<label for="evento">Natureza</label>
+																						<input type="text" class="form-control" name="descNaturezaDespesa" id="descNaturezaDespesa"/>
+																					</div>
+																					<div class="col-md-2 form-group">
+																						<label for="evento">Cod Natureza</label>
+																						<input type="text" class="form-control" name="codNaturezaDespesa" id="codNaturezaDespesa" readonly/>
+																					</div>
+																					<div class="col-md-2 form-group">
+																						<label for="evento">Valor (R$)</label>
+																						<input type="text" class="form-control" name="valorDespesa" id="valorDespesa" onkeyup="maskValor(this);" />
+																					</div>
+																				</div>
+																					
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<button type="button" id="btnAdicionarDespesa" class="btn-lg btn-primary" 
+											title="Adicionar Despesa" 
+											onclick="insereDespesa()" data-toggle="button">
+												  <span class="flaticon flaticon-square-plus icon-sm"></span> Adicionar Despesa
+											</button>
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Valor total das despesas</label>
+												<input class="form-control" id="tbValorTotalDespesas" name="tbValorTotalDespesas" type="text" readonly>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div id="collapseDivDadosContratos" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="panel panel-info" id="contratos_evento">
+							<div class="panel-heading">
+								<h3 class="panel-title">					    			
+									<a class="collapse-icon up" data-toggle="collapse" data-parent="#accordion" href="#collapseDivContratosEvento">
+										<span class="flaticon flaticon-person-add icon-sm"></span> SELECIONAR CONTRATOS
+									</a>
+								</h3>
+							</div>
+							
+							<div id="collapseDivContratosEvento" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-12" >
+											<div class="alert alert-info" role="alert">O proponente deverá acessar o Deskfy e 
+												solicitar a proposta para a empresa solicitada.
+											</div>
+										</div>
+									</div>
+									<div class="row" id="div_contratos_evento">
+										<div class="col-md-12">
+											<div class="panel panel-primary">
+												<div class="panel-heading" >
+													<h3 class="panel-title"></h3>
+												</div>
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-md-12">
+															<div class="col-xs-12 col-sm-12 col-md-12">
+																<table tablename="contratos" class="table table-striped Tabela" id="contratos" 
+																	noaddbutton="true" nodeletebutton="false" 
+																	customFnDelete="removeContrato(this)">
+																	<thead>
+																		<tr><th></th></tr>
+																	</thead>
+																	<tbody id="tbodyContrato">
+																		<tr>
+																			<td>
+																				
+																				<div class="row">
+																					<div class="col-xs-12 col-sm-12 col-md-12" data-field-name="" data-show-properties="" data-type="zoomfield">
+																						<div class="form-group">
+																							<p class="text-blue" for="rm_contratosativos">Escolha o contrato:</p>
+																							<div class="input-group">
+																								<input data-zoom="{'displayKey':'NOMEFANTASIA','datasetId':'rm_consulta_contratosativos_pagamentos',
+																												'fields':[
+																													 {'field':'NOMEFANTASIA','label':'Contrato','standard':true},
+																													 {'field':'CODIGOCONTRATO','label':'Nº Contrato','standard':true},
+																													 {'field':'IDCNT','label':'ID Contrato','standard':true},
+																													 {'field':'SALDO','label':'Saldo','standard':true}]}" id="rm_contratosativos" name="rm_contratosativos" type="zoom">
+																								<div class="input-group-addon zoom-preview">
+																									<span class="fluigicon fluigicon-zoom-in"></span>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																				<div class="row" hidden id="painelDadosContratos" style="margin-bottom: 1px">
+																					<div class="col-xs-12 col-sm-5 col-md-4">
+																						<label>Número do Contrato</label>
+																						<input class="form-control" id="tbNumeroContrato" name="tbNumeroContrato" readonly type="text"/>
+																					</div>
+																					<div class="col-xs-12 col-sm-5 col-md-4">
+																						<label>ID do Contrato</label>
+																						<input class="form-control" id="tbIdContrato" name="tbIdContrato" readonly type="text"/>
+																					</div>
+																					<div class="col-xs-12 col-sm-5 col-md-4">
+																						<label>CNPJ/CPF</label>
+																						<input class="form-control" id="CPFOuCNPJContratos" name="CPFOuCNPJContratos" readonly type="text"/>
+																					</div>
+																				</div>
+																				<div class="row" style="margin-bottom: 1px">
+																					<div class="col-xs-12 col-sm-5 col-md-4">
+																						<label>Valor do Contrato</label>
+																						<input class="form-control" id="tbValorContrato" name="tbValorContrato" readonly type="text"/>
+																					</div>
+																					<div class="col-xs-12 col-sm-5 col-md-4">
+																						<label>Saldo do Contrato</label>
+																						<input class="form-control" id="tbSaldoContrato" name="tbSaldoContrato" readonly type="text"/>
+																					</div>
+																					<div class="col-xs-12 col-sm-5 col-md-4">
+																						<label>Vencimento do Contrato</label>
+																						<input class="form-control" id="tbVencimentoContrato" name="tbVencimentoContrato" readonly type="text"/>
+																					</div>
+																				</div>
+																					
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<button type="button" id="btnAdicionarDespesa" class="btn-lg btn-primary" 
+											title="Adicionar Despesa" 
+											onclick="insereDespesa()" data-toggle="button">
+												  <span class="flaticon flaticon-square-plus icon-sm"></span> Adicionar Despesa
+											</button>
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Valor total das despesas</label>
+												<input class="form-control" id="tbValorTotalDespesas" name="tbValorTotalDespesas" type="text" readonly>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
