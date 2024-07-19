@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
 	<script type="text/javascript" src="comportamentoform.js" charset="utf-8"></script>
 	<script type="text/javascript" src="eventosform.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zooms.js" charset="utf-8"></script>
 </head>
 <body class="fluig-style-guide">
 	<div class="fluig-style-guide">
@@ -366,8 +367,6 @@
 					</div>
 				</div>
 
-
-
 				<div id="collapseDivDadosContratos" class="panel-collapse collapse in">
 					<div class="panel-body">
 						<div class="panel panel-info" id="contratos_evento">
@@ -382,7 +381,7 @@
 							<div id="collapseDivContratosEvento" class="panel-collapse collapse in">
 								<div class="panel-body">
 									<div class="row">
-										<div class="col-md-4 col-sm-4 col-xs-12" >
+										<div class="col-md-12" >
 											<div class="alert alert-info" role="alert">O proponente deverá acessar o Deskfy e 
 												solicitar a proposta para a empresa solicitada.
 											</div>
@@ -407,11 +406,10 @@
 																	<tbody id="tbodyContrato">
 																		<tr>
 																			<td>
-																				
 																				<div class="row">
 																					<div class="col-xs-12 col-sm-12 col-md-12" data-field-name="" data-show-properties="" data-type="zoomfield">
 																						<div class="form-group">
-																							<p class="text-blue" for="rm_contratosativos">Escolha o contrato:</p>
+																							<p class="text-blue" for="rm_contratosativos"><b>Escolha o contrato:</b></p>
 																							<div class="input-group">
 																								<input data-zoom="{'displayKey':'NOMEFANTASIA','datasetId':'rm_consulta_contratosativos_pagamentos',
 																												'fields':[
@@ -426,7 +424,7 @@
 																						</div>
 																					</div>
 																				</div>
-																				<div class="row" hidden id="painelDadosContratos" style="margin-bottom: 1px">
+																				<div class="row" id="painelDadosContratos" style="margin-bottom: 1px">
 																					<div class="col-xs-12 col-sm-5 col-md-4">
 																						<label>Número do Contrato</label>
 																						<input class="form-control" id="tbNumeroContrato" name="tbNumeroContrato" readonly type="text"/>
@@ -454,7 +452,182 @@
 																						<input class="form-control" id="tbVencimentoContrato" name="tbVencimentoContrato" readonly type="text"/>
 																					</div>
 																				</div>
-																					
+																				<br>
+																				<div class="row">
+																					<div class="col-md-12 col-sm-12 col-xs-12">
+																						<div class="panel panel-default">
+																							<div class="panel-heading clearfix">
+																								  <i class="icon-calendar"></i>
+																								  <h3 class="panel-title">Itens do contrato</h3>
+																							</div>
+																							<div class="panel-body">
+
+																								<div class="row">
+																															
+																									<div class="col-lg-5 col-sm-5 col-xs-12">
+																										<label class="control-label" for="zoom">Item</label>
+																										<div class="form-group">
+																											<input type="zoom" name="rm_itemcontrato" id="rm_itemcontrato"
+																												data-zoom="{'displayKey':'ITEM','datasetId':'rm_consulta_itenscontrato',
+																													'fields':[
+																														 {'field':'ITEM','label':'Produto','standard':true}
+																														 ]}">
+																										</div>
+																									</div>
+																									
+																									<div class="col-lg-1 col-sm-2 col-xs-12">
+																										<label class="control-label">Quant.</label>
+																										<div class="form-group">
+																											<input class="form-control" name="rmquant" id="rmquant" type="number" min="1" onchange="calculaTotalTotal(this)"/>
+																										</div>
+																									</div>
+																									
+																									<div class="col-lg-2 col-sm-2 col-xs-12">
+																										<label class="control-label">Valor Unit.</label>
+																										<div class="form-group">
+																											<input class="form-control" name="rmvalor" id="rmvalor" type="text" onkeyup="moeda(this);" readonly/>
+																										</div>
+																									</div>
+																									
+																									<div class="col-lg-1 col-sm-2 col-xs-12">
+																										<label class="control-label">Nro. Diarias</label>
+																										<div class="form-group">
+																											<input class="form-control" name="rmnrodiarias" id="rmnrodiarias" type="number" min="1" onchange="calculaTotalTotal(this)"/>
+																										</div>
+																									</div>
+																									
+																									<div class="col-lg-2 col-sm-2 col-xs-12">
+																										<label class="control-label">Valor Total</label>
+																										<div class="form-group">
+																											<input class="form-control" name="rmtotal" id="rmtotal" type="text"/>
+																										</div>
+																									</div>
+																									  
+																									<div class="col-lg-1 col-sm-1 col-xs-12">
+																										<label class="control-label">Adicionar</label>
+																										<div class="AddicionarItem form-group">
+																											<button id="btnAdicionarItem" name="btnAdicionarItem" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top"
+																												title="Adicionar Item" onclick="insereItemContrato(this)">
+																											<span class="flaticon flaticon-square-plus icon-sm"></span>
+																											</button>
+																										</div>
+																									</div>
+																								</div>
+																							<!--
+																								<div class="row">
+																									<div class="col-lg-12 col-sm-12 col-xs-12">
+																										<table tablename="tableItem" class="table table-striped Tabela" id="tableItem" noaddbutton="true" nodeletebutton="true">
+																											<thead>
+																												<tr>
+																													<th></th>
+																												</tr>
+																											</thead>
+																											<tbody>
+																												<tr>
+																													<td>
+																														<div class="row">
+																															
+																															<div class="col-lg-5 col-sm-5 col-xs-12">
+																																<label class="control-label" for="zoom">Item</label>
+																																<div class="form-group">
+																																	<input type="zoom" name="rm_itemcontrato" id="rm_itemcontrato"
+																																		data-zoom="{'displayKey':'ITEM','datasetId':'rm_consulta_itenscontrato',
+																																			'fields':[
+																																				 {'field':'ITEM','label':'Produto','standard':true}
+																																				 ]}">
+																																</div>
+																															</div>
+																															
+																															<div class="col-lg-1 col-sm-2 col-xs-12">
+																																<label class="control-label">Quant.</label>
+																																<div class="form-group">
+																																	<input class="form-control" name="rmquant" id="rmquant" type="number" min="1" onchange="SEBRAE010.calculaTotalTotal(this)"/>
+																																</div>
+																															</div>
+																															
+																															<div class="col-lg-2 col-sm-2 col-xs-12">
+																																<label class="control-label">Valor Unit.</label>
+																																<div class="form-group">
+																																	<input class="form-control" name="rmvalor" id="rmvalor" type="text" onkeyup="moeda(this);" readonly/>
+																																</div>
+																															</div>
+																															
+																															<div class="col-lg-1 col-sm-2 col-xs-12">
+																																<label class="control-label">Nro. Diarias</label>
+																																<div class="form-group">
+																																	<input class="form-control" name="rmnrodiarias" id="rmnrodiarias" type="number" min="1" onchange="SEBRAE010.calculaTotalTotal(this)"/>
+																																</div>
+																															</div>
+																															
+																															<div class="col-lg-2 col-sm-2 col-xs-12">
+																																<label class="control-label">Valor Total</label>
+																																<div class="form-group">
+																																	<input class="form-control" name="rmtotal" id="rmtotal" type="text"/>
+																																</div>
+																															   </div>
+																															  
+																															  <div class="col-lg-1 col-sm-1 col-xs-12">
+																																<label class="control-label">Excluir</label>
+																																<div class="removerItem form-group">
+																																  <button id="btnRemoverItem" name="btnRemoverItem" type="button" class="btn btn-danger delItem" data-toggle="tooltip" data-placement="top"
+																																		title="Excluir Item" onclick="SEBRAE010_scripts_tabela.itens.remove(this)">
+																																  <span class="flaticon flaticon-trash icon-sm"></span>
+																																  </button>
+																																</div>
+																															</div>
+																															   
+																															   <input name="rm_codprod" id="rm_codprod" type="hidden"/>
+																															   <input name="rm_idprod" id="rm_idprod" type="hidden"/>
+																															   <input name="rm_prodseq" id="rm_prodseq" type="hidden"/>
+																															   
+																														</div>
+																													</td>
+																												</tr>
+																											</tbody>
+																										</table>
+																									</div>
+																								</div>
+																								
+																								<div class="row">
+																									<div class="col-md-2 col-xs-12">
+																										<button type="button" id="btnIncluirItem" name="btnIncluirItem" class="btn btn-success addItem" 
+																											title="Incluir Item de Contrato" onclick="insereItemContrato()" data-toggle="button">
+																												<span class="flaticon flaticon-square-plus icon-sm"></span> Adicionar Item do Contrato
+																										</button>
+																									</div>
+																																				
+																									<div class="col-md-2 col-xs-12"></div>
+																									<div class="col-md-3 col-xs-6">
+																									  <div class="form-horizontal">
+																										<label class="col-md-4 control-label">Valor Total</label>
+																										<div class="col-md-8">
+																										  <input class="form-control fs-font-bold" name="numberVlrTot" id="numberVlrTot" type="text" readonly/>
+																										</div>
+																									  </div>
+																									</div>
+																								</div>
+																							-->
+																							</div>
+																						 </div>
+																					</div>
+																				</div>
+																				<div class="row" style="margin-bottom: 1px">
+																					<div class="col-xs-12 col-sm-12 col-md-12">
+																						<table class="table table table-bordered" id="tableItensInserridos">
+																							<thead>
+																								<tr class="success">
+																									<td width="40%"><b>ITEM</b></td>
+																									<td width="15%" style="text-align: center;"><b>QUANTIDADE</b></td>
+																									<td width="15%" style="text-align: center;"><b>VALOR UNITÁRIO</b></td>
+																									<td width="15%" style="text-align: center;"><b>Nº DE DIÁRIAS</b></td>
+																									<td width="15%" style="text-align: center;"><b>VALOR TOTAL</b></td>
+																								</tr>
+																							</thead>
+																							<tbody id="itensInseridos">
+																							</tbody>
+																						</table>
+																					</div>
+																				</div>
 																			</td>
 																		</tr>
 																	</tbody>
@@ -468,20 +641,11 @@
 									</div>
 									<div class="row">
 										<div class="col-md-6">
-											<button type="button" id="btnAdicionarDespesa" class="btn-lg btn-primary" 
-											title="Adicionar Despesa" 
-											onclick="insereDespesa()" data-toggle="button">
-												  <span class="flaticon flaticon-square-plus icon-sm"></span> Adicionar Despesa
+											<button type="button" id="btnAdicionarContrato" class="btn-lg btn-primary" 
+											title="Adicionar Contrato" 
+											onclick="insereContrato()" data-toggle="button">
+												  <span class="flaticon flaticon-square-plus icon-sm"></span> Adicionar Contrato
 											</button>
-										</div>
-									</div>
-									<br>
-									<div class="row">
-										<div class="col-md-3">
-											<div class="form-group">
-												<label>Valor total das despesas</label>
-												<input class="form-control" id="tbValorTotalDespesas" name="tbValorTotalDespesas" type="text" readonly>
-											</div>
 										</div>
 									</div>
 								</div>

@@ -1,5 +1,6 @@
 $("document").ready(function(){	
 
+	/** Comportamento do switch Evento Já realizado */
     FLUIGC.switcher.init($("#switchEventoJaRealizado"));
 	FLUIGC.switcher.setFalse($("#switchEventoJaRealizado"));
 	$("#switchEventoJaRealizado").attr("data-on-color",'success')
@@ -17,9 +18,11 @@ $("document").ready(function(){
 		}		  
 	});
 
+	/** Inicia os campos de datas */
     FLUIGC.calendar('#tbDataInicio', { minDate: new Date(), });
 	FLUIGC.calendar('#tbDataFim', { minDate: new Date(), });
 
+	/** Comportamento do switch Reutilizar despesas */
     FLUIGC.switcher.init($("#switchReutilizarDespesas"));
 	FLUIGC.switcher.setFalse($("#switchReutilizarDespesas"));
 	$("#switchReutilizarDespesas").attr("data-on-color",'success')
@@ -27,5 +30,9 @@ $("document").ready(function(){
 	$("#switchReutilizarDespesas").attr("onText",'Sim')
 	$("#switchReutilizarDespesas").attr("offText",'Não');
     
+	/** Adiciona um contrato na tabela de contratos */
+	insereContrato();
+
+	
 });
 
