@@ -11,26 +11,28 @@ function removeDespesa(elemento) {
 	fnWdkRemoveChild(elemento);
 }
 
+function removeContrato(elemento) {
+	fnWdkRemoveChild(elemento);
+}
+
 function insereContrato() {
 	return wdkAddChild("contratos");
 }
 
 function insereItemContrato(linhaItem) {
-	//conctinuar daqui, pegando o indice da linha do cotrato ( ___indice )
-	let tbodyItensInserido = $(linhaItem).closest('#row').find("#itensInseridos");
+	let contratoSelecinado = $(linhaItem).closest('#tbodyContrato').find("[name^='rm_contratosativos___']");
+	let indexContrato = contratoSelecinado.attr("name").split("___")[1];
 
-	console.log((linhaItem).closest('#tbodyContrato'));
-	console.log(tbodyItensInserido);
-	console.log($(tbodyItensInserido));
-	$(linhaItem).closest('#tbodyContrato').find("#itensInseridos").append(
+	$("#itensInseridos___"+indexContrato).append(
 		"<tr>"+
-			"<td>teste</td>"+
-			"<td><center>teste</center></td>"+
-			"<td><center>teste</center></td>"+
-			"<td><center>teste</center></td>"+
-			"<td><center>teste</center></td>"+
+			"<td>"+$("#rm_itemcontrato___"+indexContrato).find(":selected").val()+"</td>"+
+			"<td><center>"+$("#rmquant___"+indexContrato).val()+"</center></td>"+
+			"<td><center>"+$("#rmvalor___"+indexContrato).val()+"</center></td>"+
+			"<td><center>"+$("#rmnrodiarias___"+indexContrato).val()+"</center></td>"+
+			"<td><center>"+$("#rmtotal___"+indexContrato).val()+"</center></td>"+
 		"</tr>"
 	);
+	
 }
 
 function maskValor(i) {
