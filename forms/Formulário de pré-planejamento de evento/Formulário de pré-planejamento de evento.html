@@ -61,6 +61,7 @@
 												</span>
 												<input type="text" class="form-control" id="solicitanteEmail" name="solicitanteEmail" readonly>
 												<input type="hidden" class="form-control" id="solicitanteChapa" name="solicitanteChapa" readonly>
+												<input type="hidden" class="form-control" id="itensContratosJson" name="itensContratosJson" readonly>
 											</div>	                                                       
 										</div>
 										<div class="col-xs-12 col-sm-6 col-md-2">
@@ -406,7 +407,7 @@
 																	<tbody id="tbodyContrato">
 																		<tr>
 																			<td>
-																				<div class="row">
+																				<div class="row" id="linhaContrato">
 																					<div class="col-xs-12 col-sm-12 col-md-12" data-field-name="" data-show-properties="" data-type="zoomfield">
 																						<div class="form-group">
 																							<p class="text-blue" for="rm_contratosativos"><b>Escolha o contrato:</b></p>
@@ -624,6 +625,7 @@
 																									<td width="15%" style="text-align: center;"><b>VALOR UNITÁRIO</b></td>
 																									<td width="15%" style="text-align: center;"><b>Nº DE DIÁRIAS</b></td>
 																									<td width="15%" style="text-align: center;"><b>VALOR TOTAL</b></td>
+																									<td style="display: none;"><b>INDEX</b></td>
 																								</tr>
 																							</thead>
 																							<tbody id="itensInseridos">

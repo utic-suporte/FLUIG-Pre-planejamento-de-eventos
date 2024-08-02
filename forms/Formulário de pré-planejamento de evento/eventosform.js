@@ -23,6 +23,8 @@ function insereItemContrato(linhaItem) {
 	let contratoSelecinado = $(linhaItem).closest('#tbodyContrato').find("[name^='rm_contratosativos___']");
 	let indexContrato = contratoSelecinado.attr("name").split("___")[1];
 
+	let qtdItens = $("#itensInseridos___"+indexContrato+" > tr").length;
+	console.log(qtdItens);
 	$("#itensInseridos___"+indexContrato).append(
 		"<tr>"+
 			"<td>"+$("#rm_itemcontrato___"+indexContrato).find(":selected").val()+"</td>"+
@@ -30,11 +32,65 @@ function insereItemContrato(linhaItem) {
 			"<td><center>"+$("#rmvalor___"+indexContrato).val()+"</center></td>"+
 			"<td><center>"+$("#rmnrodiarias___"+indexContrato).val()+"</center></td>"+
 			"<td><center>"+$("#rmtotal___"+indexContrato).val()+"</center></td>"+
+			"<td style='display: none;'><center>"+(qtdItens+1)+"</center></td>"+
 		"</tr>"
 	);
-	
+
+	atualizaCampoItensContratosJson();
+	/*
+	let itensContratosJson = $("#itensContratosJson").val();
+	let itemcontjson = {};
+	if(itensContratosJson == "" || itensContratosJson == "{}"){
+		itemcontjson[parseInt(indexContrato)] = {
+			"descricao":$("#rm_itemcontrato___"+indexContrato).find(":selected").val(),
+			"quantidade":$("#rmquant___"+indexContrato).val(),
+			"valorunitario":$("#rmvalor___"+indexContrato).val(),
+			"numdiarias":$("#rmnrodiarias___"+indexContrato).val(),
+			"total":$("#rmtotal___"+indexContrato).val(),
+			"index" : qtdItens+1
+		}
+		$("#itensContratosJson").val(JSON.stringify(itemcontjson));
+	}else{
+		atualizaCampoItensContratosJson();
+	}
+		*/
 }
 
+function atualizaCampoItensContratosJson(){
+
+	let itemcontjson = {};
+	$("[name^='rm_contratosativos___']").each(function( index, element ) {
+		let indexCont = $(this).attr("name").split("___")[1];
+		itemcontjson[indexCont] = [];
+		console.log(JSON.stringify(itemcontjson));
+		$('#itensInseridos___'+indexCont+' > tr').each(function() {
+			//console.log($(this).find('td').eq(2).text());
+			itemcontjson[indexCont].push(
+				{
+					"descricao": 		$(this).find('td').eq(0).text(),
+					"quantidade": 		$(this).find('td').eq(1).text(),
+					"valorunitario": 	$(this).find('td').eq(2).text(),
+					"numdiarias": 		$(this).find('td').eq(3).text(),
+					"total": 			$(this).find('td').eq(4).text(),
+					"index": 			$(this).find('td').eq(5).text()
+				}
+			)
+			/*
+			itemcontjson[parseInt(indexCont)] = {
+				"descricao": 		$(this).find('td').eq(0).text(),
+				"quantidade": 		$(this).find('td').eq(1).text(),
+				"valorunitario": 	$(this).find('td').eq(2).text(),
+				"numdiarias": 		$(this).find('td').eq(3).text(),
+				"total": 			$(this).find('td').eq(4).text(),
+				"index": 			$(this).find('td').eq(5).text()
+			}
+				*/
+		});
+	});
+
+	$("#itensContratosJson").val(JSON.stringify(itemcontjson));
+
+}
 function maskValor(i) {
 	var v = i.value.replace(/\D/g, '');
 	v = (v / 100).toFixed(2) + '';
