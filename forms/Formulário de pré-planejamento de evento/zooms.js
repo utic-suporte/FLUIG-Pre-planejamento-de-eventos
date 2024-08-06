@@ -15,6 +15,7 @@ function setSelectedZoomItem(selectedItem) {
 
     var contratoLinha = zoomitm.substring(0, 18);
     var itemlinha = zoomitm.substring(0,15);
+    var itemDespesa = zoomitm.substring(0,19);
 
     if (selectedItem.inputId == "rm_dadoscolab"){
 		document.getElementById("tbGerente").value = gerente;
@@ -39,6 +40,30 @@ function setSelectedZoomItem(selectedItem) {
     }else if (itemlinha == "rm_itemcontrato") {
         var cLinha = selectedItem.inputName.substring(15, selectedItem.inputName.lenght);
         $("#rmvalor"+ cLinha).val(selectedItem.VLRUNITARIO);
+    }else if (itemDespesa == "descNaturezaDespesa") {
+        var cLinha = selectedItem.inputName.substring(19, selectedItem.inputName.lenght);
+        $("#codNaturezaDespesa"+ cLinha).val(selectedItem.CODTB1FAT);
+    }
+
+    if (selectedItem.inputId == "tbEventoCadastrado") {
+
+        let c1 = DatasetFactory.createConstraint("tbNomeEvento", selectedItem["TBNOMEEVENTO"], selectedItem["TBNOMEEVENTO"], ConstraintType.MUST);
+        let c2 = DatasetFactory.createConstraint("metadata#active", true, true, ConstraintType.MUST);
+		let retorno = DatasetFactory.getDataset("FormuláriodePlanejamentodeEventos9437", null, [c1,c2], null);
+		if(retorno.values.length > 0){
+            let despesa = retorno.values[retorno.values.length-1];
+            $("#tbNomeEvento").val(despesa.tbNomeEvento);
+            $("#tbLocalEvento").val(despesa.tbLocalEvento);
+            $("#tbSinteseEvento").val(despesa.tbSinteseEvento);
+            $("#tbTipoEvento"+despesa.tbTipoEvento).prop("checked", true);
+        }else{
+            FLUIGC.toast({
+                title: 'Atenção',
+                message : "Não foi possível encontra eventos nas solicitações de planejamento de eventos.", 
+                type : "warning",
+                timeout: 10000
+            });
+        }
     }
 
 }

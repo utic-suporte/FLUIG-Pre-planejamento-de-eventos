@@ -11,10 +11,10 @@ $("document").ready(function(){
 	FLUIGC.switcher.onChange("#switchEventoJaRealizado", function(event, state){		
 		if(state === true){							
 			$("#div_selecaoEvento").show();
-            $("#div_botaoCarrregarDespesas").show();
+			$("#collapseDivDadosDespesas").show();
 		}else if(state !== true){	
 			$("#div_selecaoEvento").hide();
-            $("#div_botaoCarrregarDespesas").hide();
+            $("#collapseDivDadosDespesas").hide();
 		}		  
 	});
 
@@ -29,10 +29,28 @@ $("document").ready(function(){
 	$("#switchReutilizarDespesas").attr("offColor",'danger')
 	$("#switchReutilizarDespesas").attr("onText",'Sim')
 	$("#switchReutilizarDespesas").attr("offText",'Não');
+
+	FLUIGC.switcher.onChange("#switchReutilizarDespesas", function(event, state){		
+		if(state === true){							
+			$("#div_botaoCarrregarDespesas").show();
+		}else if(state !== true){	
+			$("#div_botaoCarrregarDespesas").hide();
+		}
+
+		let campoNomeEvento  = $("#tbEventoCadastrado").val();
+	
+		if(campoNomeEvento.length == 0){
+			FLUIGC.toast({
+					title: 'Atenção',
+					message : "Escolha o evento antes de clicar no botão para carregar as despesas.", 
+					type : "warning",
+					timeout: 10000
+				});
+		}
+	});
     
 	/** Adiciona um contrato na tabela de contratos */
 	insereContrato();
-
 	
 });
 

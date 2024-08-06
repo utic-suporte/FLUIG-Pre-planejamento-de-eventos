@@ -20,40 +20,33 @@ function insereContrato() {
 }
 
 function insereItemContrato(linhaItem) {
+	let index = $(linhaItem).attr("name").split("___")[1];
+
+	/*
 	let contratoSelecinado = $(linhaItem).closest('#tbodyContrato').find("[name^='rm_contratosativos___']");
 	let indexContrato = contratoSelecinado.attr("name").split("___")[1];
-
-	let qtdItens = $("#itensInseridos___"+indexContrato+" > tr").length;
-	console.log(qtdItens);
-	$("#itensInseridos___"+indexContrato).append(
+	*/
+	let qtdItens = $("#itensInseridos___"+index+" > tr").length;
+	//console.log(qtdItens);
+	$("#itensInseridos___"+index).append(
 		"<tr>"+
-			"<td>"+$("#rm_itemcontrato___"+indexContrato).find(":selected").val()+"</td>"+
-			"<td><center>"+$("#rmquant___"+indexContrato).val()+"</center></td>"+
-			"<td><center>"+$("#rmvalor___"+indexContrato).val()+"</center></td>"+
-			"<td><center>"+$("#rmnrodiarias___"+indexContrato).val()+"</center></td>"+
-			"<td><center>"+$("#rmtotal___"+indexContrato).val()+"</center></td>"+
+			"<td>"+$("#rm_itemcontrato___"+index).find(":selected").val()+"</td>"+
+			"<td><center>"+$("#rmquant___"+index).val()+"</center></td>"+
+			"<td><center>"+$("#rmvalor___"+index).val()+"</center></td>"+
+			"<td><center>"+$("#rmnrodiarias___"+index).val()+"</center></td>"+
+			"<td><center>"+$("#rmtotal___"+index).val()+"</center></td>"+
+			"<td><center><img src='lixeira.png' onclick='removeItemContrato(this)' style='cursor:pointer;cursor:hand;'></center></td>"+
 			"<td style='display: none;'><center>"+(qtdItens+1)+"</center></td>"+
+			
 		"</tr>"
 	);
 
 	atualizaCampoItensContratosJson();
-	/*
-	let itensContratosJson = $("#itensContratosJson").val();
-	let itemcontjson = {};
-	if(itensContratosJson == "" || itensContratosJson == "{}"){
-		itemcontjson[parseInt(indexContrato)] = {
-			"descricao":$("#rm_itemcontrato___"+indexContrato).find(":selected").val(),
-			"quantidade":$("#rmquant___"+indexContrato).val(),
-			"valorunitario":$("#rmvalor___"+indexContrato).val(),
-			"numdiarias":$("#rmnrodiarias___"+indexContrato).val(),
-			"total":$("#rmtotal___"+indexContrato).val(),
-			"index" : qtdItens+1
-		}
-		$("#itensContratosJson").val(JSON.stringify(itemcontjson));
-	}else{
-		atualizaCampoItensContratosJson();
-	}
-		*/
+}
+
+function removeItemContrato(linha){
+	$(linha).closest('tr').remove(); 
+	atualizaCampoItensContratosJson();
 }
 
 function atualizaCampoItensContratosJson(){
@@ -62,9 +55,7 @@ function atualizaCampoItensContratosJson(){
 	$("[name^='rm_contratosativos___']").each(function( index, element ) {
 		let indexCont = $(this).attr("name").split("___")[1];
 		itemcontjson[indexCont] = [];
-		console.log(JSON.stringify(itemcontjson));
 		$('#itensInseridos___'+indexCont+' > tr').each(function() {
-			//console.log($(this).find('td').eq(2).text());
 			itemcontjson[indexCont].push(
 				{
 					"descricao": 		$(this).find('td').eq(0).text(),
@@ -75,16 +66,6 @@ function atualizaCampoItensContratosJson(){
 					"index": 			$(this).find('td').eq(5).text()
 				}
 			)
-			/*
-			itemcontjson[parseInt(indexCont)] = {
-				"descricao": 		$(this).find('td').eq(0).text(),
-				"quantidade": 		$(this).find('td').eq(1).text(),
-				"valorunitario": 	$(this).find('td').eq(2).text(),
-				"numdiarias": 		$(this).find('td').eq(3).text(),
-				"total": 			$(this).find('td').eq(4).text(),
-				"index": 			$(this).find('td').eq(5).text()
-			}
-				*/
 		});
 	});
 
@@ -142,4 +123,65 @@ function moeda(z){
 	v=v.replace(/(\d{1})(\d{8})$/,"$1,$2") //coloca ponto antes dos últimos 8 digitos
 	v=v.replace(/(\d{1})(\d{1,2})$/,"$1,$2") //coloca ponto antes dos últimos 5 digitos
 	z.value = v;
+}
+
+function mascaraValor(i) {
+	var v = i.replace(/\D/g, '');
+	v = (v / 100).toFixed(2) + '';
+	v = v.replace(".", ",");
+	v = v.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+	v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
+	return v;
+};
+
+function carregarDespesas(){
+
+	let campoNomeEvento  = $("#tbEventoCadastrado").val();
+	
+	if(campoNomeEvento.length == 0){
+		FLUIGC.toast({
+				title: 'Atenção',
+				message : "Escolha o evento antes de clicar no botão para carregar as despesas.", 
+				type : "warning",
+				timeout: 10000
+			});
+	}else{
+		let c1 = DatasetFactory.createConstraint("nomeevento", campoNomeEvento[0], campoNomeEvento[0], ConstraintType.MUST);
+		let retorno = DatasetFactory.getDataset("ds_despesaseventosrm", null, [c1], null);
+
+		console.log(retorno);
+
+		if(retorno.values.length > 0){
+			let despesas = retorno.values;
+			for(var i = 0; i < despesas.length; i++) {
+				let despesaAtual = despesas[i];
+				let index = insereDespesa();
+				$("#descNaturezaDespesa___"+index).val(despesaAtual.descnatureza);
+				$("#codNaturezaDespesa___"+index).val(despesaAtual.codnatureza);
+				$("#valorDespesa___"+index).val(mascaraValor(despesaAtual.valoritem));
+				$("#descNaturezaDespesa___"+index).prop("readonly","readonly");
+				$("#valorDespesa___"+index).prop("readonly","readonly");
+
+				setZoomData("descNaturezaDespesa___"+index, despesaAtual.descnatureza);
+			}
+		}
+
+		somaValorTotalDespesas();
+	}
+}
+
+function somaValorTotalDespesas(){
+	let valorTotalDespesa = 0;
+	$("[name^='descNaturezaDespesa___']").each(function( index, element ) {
+		let indexCont = $(this).attr("name").split("___")[1];
+		let valorDespesa = $('#valorDespesa___'+indexCont).val();
+		valorDespesa = valorDespesa.replaceAll(".","").replace(",",".");
+		valorTotalDespesa += parseFloat(valorDespesa);
+	});
+
+	$('#tbValorTotalDespesas').val(mascaraValor(valorTotalDespesa.toFixed(2)));
+}
+
+function setZoomData(instance, value){
+    window[instance].setValue(value);
 }

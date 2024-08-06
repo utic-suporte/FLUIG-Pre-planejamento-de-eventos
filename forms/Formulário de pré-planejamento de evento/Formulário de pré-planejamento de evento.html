@@ -167,11 +167,11 @@
 									</div>
 
 									<div class="row">
-										<div class="form-group col-md-12">
+										<div class="form-group col-md-6">
 											<label for="tbNomeEvento"><b>Nome do evento:</b></label>
 											<input type="text" class="form-control camposEvento" id="tbNomeEvento" name="tbNomeEvento">
 										</div>
-										<div class="form-group col-md-12">
+										<div class="form-group col-md-6">
 											<label for="tbLocalEvento"><b>Local do evento:</b></label>
 											<input type="text" class="form-control camposEvento" id="tbLocalEvento" name="tbLocalEvento">
 										</div>
@@ -183,6 +183,24 @@
 													<textarea class="form-control" rows="3" id="tbSinteseEvento"
 														name="tbSinteseEvento"
 														placeholder="Descreva de forma objetiva quais os principais resultados esperados com o o evento e a importância dessa iniciativa no desenvolvimento dos pequenos negócios e posicionamento da marca sebrae na região."></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4" data-type="radio" data-show-properties="" data-field-name="tbTipoEvento">
+											<div class="form-input">
+												<div class="form-group">
+													<label>Tipo do Evento</label><span
+														class="required text-danger"><strong> *</strong></span>
+													<div class="radio-options">
+														<div class="radio">
+															<label><input type="radio" name="tbTipoEvento" id="tbTipoEventoM"
+																	value="M">Mercadológico
+																</label>
+															<label><input type="radio" name="tbTipoEvento" id="tbTipoEventoI"
+																	value="I">Institucional
+																</label>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -210,62 +228,9 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-4" data-type="radio" data-show-properties="" data-field-name="tbTipoEvento">
-											<div class="form-input">
-												<div class="form-group">
-													<label>Tipo do Evento</label><span
-														class="required text-danger"><strong> *</strong></span>
-													<div class="radio-options">
-														<div class="radio">
-															<label><input type="radio" name="tbTipoEvento" id="tbTipoEventoM"
-																	value="M">Mercadológico
-																</label>
-															<label><input type="radio" name="tbTipoEvento" id="tbTipoEventoI"
-																	value="I">Institucional
-																</label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
+										
 									</div>
 
-									<div class="row" id="div_botaoCarrregarDespesas" style="display: none;">
-										<div class="col-md-12" >
-											<div class="panel panel-primary">
-												<div class="panel-heading">
-													<h3 class="panel-title">					    			
-														<span class="flaticon flaticon-person-add icon-sm"></span> NATUREZA DE DESPESAS EXECUTADAS NO ANO ANTERIOR
-													</h3>
-												</div>
-												<div class="panel-body">
-													<div class="row">
-														<div class="form-group col-md-12">
-															<button type="button" class="btn btn-success" id="btnCarregarDespesas"
-																onclick="carregarDespesas();">
-																CARREGAR DESPESAS <i class="fluigicon fluigicon-plus-sign icon-xs"></i>
-															</button>
-														</div>
-													</div>
-													<div class="row" id="div_tabelaDespesasCarregadas" style="display: none;">
-														<div class="col-xs-12 col-sm-12 col-md-12">
-															<table class="table table table-bordered" id="tableDespesasCarrregadas">
-																<thead>
-																	<tr class="success">
-																		<td width="10%"><b>COD</b></td>
-																		<td width="80%" style="text-align: center;"><b>NATUREZA DA DESPESA</b></td>
-																		<td width="10%" style="text-align: center;"><b>VALOR</b></td>
-																	</tr>
-																</thead>
-																<tbody id="despesasCarregadas">
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 
@@ -273,7 +238,7 @@
 					</div>
 				</div>
 
-				<div id="collapseDivDadosDespesas" class="panel-collapse collapse in">
+				<div id="collapseDivDadosDespesas" class="panel-collapse collapse in" style="display: none;">
 					<div class="panel-body">
 						<div class="panel panel-info" id="despesas_evento">
 							<div class="panel-heading">
@@ -297,7 +262,16 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-md-4 col-sm-4 col-xs-12" id="div_botaoCarrregarDespesas" style="display: none;">
+											<div class="form-input">
+												<button type="button" class="btn btn-success" id="btnCarregarDespesas"
+													onclick="carregarDespesas();">
+													CARREGAR DESPESAS <i class="fluigicon fluigicon-plus-sign icon-xs"></i>
+												</button>
+											</div>
+										</div>
 									</div>
+
 									<div class="row" id="div_detalhamento_despesas">
 										<div class="col-md-12">
 											<div class="panel panel-primary">
@@ -320,8 +294,22 @@
 																				
 																				<div class="row">
 																					<div class="col-md-8 form-group">
-																						<label for="evento">Natureza</label>
-																						<input type="text" class="form-control" name="descNaturezaDespesa" id="descNaturezaDespesa"/>
+																						<div class="form-input">
+																							<div class="form-group">
+																								<label for="zoom">Natureza:</label><span class="required text-danger"><strong>*</strong></span>
+																								<div class="input-group">
+																									<input type="zoom" name="descNaturezaDespesa" id="descNaturezaDespesa" 
+																										data-zoom="{'displayKey':'DESCRICAO','datasetId':'rm_consulta_natureza',
+																											'fields':[
+																												 {'field':'DESCRICAO','label':'Natureza','standard':true},
+																												 {'field':'CODTB1FAT','label':'Cód Natureza','standard':true}
+																												 ]}">
+																									<div class="input-group-addon zoom-preview">
+																										<span class="fluigicon fluigicon-zoom-in"></span>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
 																					</div>
 																					<div class="col-md-2 form-group">
 																						<label for="evento">Cod Natureza</label>
@@ -329,7 +317,7 @@
 																					</div>
 																					<div class="col-md-2 form-group">
 																						<label for="evento">Valor (R$)</label>
-																						<input type="text" class="form-control" name="valorDespesa" id="valorDespesa" onkeyup="maskValor(this);" />
+																						<input type="text" class="form-control" name="valorDespesa" id="valorDespesa"/>
 																					</div>
 																				</div>
 																					
@@ -357,7 +345,7 @@
 									<div class="row">
 										<div class="col-md-3">
 											<div class="form-group">
-												<label>Valor total das despesas</label>
+												<label>Valor total das despesas (R$)</label>
 												<input class="form-control" id="tbValorTotalDespesas" name="tbValorTotalDespesas" type="text" readonly>
 											</div>
 										</div>
@@ -514,100 +502,6 @@
 																										</div>
 																									</div>
 																								</div>
-																							<!--
-																								<div class="row">
-																									<div class="col-lg-12 col-sm-12 col-xs-12">
-																										<table tablename="tableItem" class="table table-striped Tabela" id="tableItem" noaddbutton="true" nodeletebutton="true">
-																											<thead>
-																												<tr>
-																													<th></th>
-																												</tr>
-																											</thead>
-																											<tbody>
-																												<tr>
-																													<td>
-																														<div class="row">
-																															
-																															<div class="col-lg-5 col-sm-5 col-xs-12">
-																																<label class="control-label" for="zoom">Item</label>
-																																<div class="form-group">
-																																	<input type="zoom" name="rm_itemcontrato" id="rm_itemcontrato"
-																																		data-zoom="{'displayKey':'ITEM','datasetId':'rm_consulta_itenscontrato',
-																																			'fields':[
-																																				 {'field':'ITEM','label':'Produto','standard':true}
-																																				 ]}">
-																																</div>
-																															</div>
-																															
-																															<div class="col-lg-1 col-sm-2 col-xs-12">
-																																<label class="control-label">Quant.</label>
-																																<div class="form-group">
-																																	<input class="form-control" name="rmquant" id="rmquant" type="number" min="1" onchange="SEBRAE010.calculaTotalTotal(this)"/>
-																																</div>
-																															</div>
-																															
-																															<div class="col-lg-2 col-sm-2 col-xs-12">
-																																<label class="control-label">Valor Unit.</label>
-																																<div class="form-group">
-																																	<input class="form-control" name="rmvalor" id="rmvalor" type="text" onkeyup="moeda(this);" readonly/>
-																																</div>
-																															</div>
-																															
-																															<div class="col-lg-1 col-sm-2 col-xs-12">
-																																<label class="control-label">Nro. Diarias</label>
-																																<div class="form-group">
-																																	<input class="form-control" name="rmnrodiarias" id="rmnrodiarias" type="number" min="1" onchange="SEBRAE010.calculaTotalTotal(this)"/>
-																																</div>
-																															</div>
-																															
-																															<div class="col-lg-2 col-sm-2 col-xs-12">
-																																<label class="control-label">Valor Total</label>
-																																<div class="form-group">
-																																	<input class="form-control" name="rmtotal" id="rmtotal" type="text"/>
-																																</div>
-																															   </div>
-																															  
-																															  <div class="col-lg-1 col-sm-1 col-xs-12">
-																																<label class="control-label">Excluir</label>
-																																<div class="removerItem form-group">
-																																  <button id="btnRemoverItem" name="btnRemoverItem" type="button" class="btn btn-danger delItem" data-toggle="tooltip" data-placement="top"
-																																		title="Excluir Item" onclick="SEBRAE010_scripts_tabela.itens.remove(this)">
-																																  <span class="flaticon flaticon-trash icon-sm"></span>
-																																  </button>
-																																</div>
-																															</div>
-																															   
-																															   <input name="rm_codprod" id="rm_codprod" type="hidden"/>
-																															   <input name="rm_idprod" id="rm_idprod" type="hidden"/>
-																															   <input name="rm_prodseq" id="rm_prodseq" type="hidden"/>
-																															   
-																														</div>
-																													</td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																								</div>
-																								
-																								<div class="row">
-																									<div class="col-md-2 col-xs-12">
-																										<button type="button" id="btnIncluirItem" name="btnIncluirItem" class="btn btn-success addItem" 
-																											title="Incluir Item de Contrato" onclick="insereItemContrato()" data-toggle="button">
-																												<span class="flaticon flaticon-square-plus icon-sm"></span> Adicionar Item do Contrato
-																										</button>
-																									</div>
-																																				
-																									<div class="col-md-2 col-xs-12"></div>
-																									<div class="col-md-3 col-xs-6">
-																									  <div class="form-horizontal">
-																										<label class="col-md-4 control-label">Valor Total</label>
-																										<div class="col-md-8">
-																										  <input class="form-control fs-font-bold" name="numberVlrTot" id="numberVlrTot" type="text" readonly/>
-																										</div>
-																									  </div>
-																									</div>
-																								</div>
-																							-->
 																							</div>
 																						 </div>
 																					</div>
@@ -623,8 +517,9 @@
 																									</td>
 																									<td width="15%" style="text-align: center;"><b>QUANTIDADE</b></td>
 																									<td width="15%" style="text-align: center;"><b>VALOR UNITÁRIO</b></td>
-																									<td width="15%" style="text-align: center;"><b>Nº DE DIÁRIAS</b></td>
+																									<td width="10%" style="text-align: center;"><b>Nº DE DIÁRIAS</b></td>
 																									<td width="15%" style="text-align: center;"><b>VALOR TOTAL</b></td>
+																									<td width="5%" style="text-align: center;"><b>EXCLUIR</b></td>
 																									<td style="display: none;"><b>INDEX</b></td>
 																								</tr>
 																							</thead>
