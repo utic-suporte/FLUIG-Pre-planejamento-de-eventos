@@ -24,6 +24,125 @@
    </array>
   </void>
   <void method="put">
+   <string>camposFormulario, documentoId = 302549</string>
+   <array class="java.lang.String" length="38">
+    <void index="0">
+     <string>CODGERENTE</string>
+    </void>
+    <void index="1">
+     <string>codNaturezaDespesa</string>
+    </void>
+    <void index="2">
+     <string>CPFOuCNPJContratos</string>
+    </void>
+    <void index="3">
+     <string>dataEvento</string>
+    </void>
+    <void index="4">
+     <string>descNaturezaDespesa</string>
+    </void>
+    <void index="5">
+     <string>itensContratosJson</string>
+    </void>
+    <void index="6">
+     <string>nmGerente</string>
+    </void>
+    <void index="7">
+     <string>rm_contratosativos</string>
+    </void>
+    <void index="8">
+     <string>rm_itemcontrato</string>
+    </void>
+    <void index="9">
+     <string>rmnrodiarias</string>
+    </void>
+    <void index="10">
+     <string>rmquant</string>
+    </void>
+    <void index="11">
+     <string>rmtotal</string>
+    </void>
+    <void index="12">
+     <string>rmvalor</string>
+    </void>
+    <void index="13">
+     <string>solicitanteAgencia</string>
+    </void>
+    <void index="14">
+     <string>solicitanteChapa</string>
+    </void>
+    <void index="15">
+     <string>solicitanteCodDepartamento</string>
+    </void>
+    <void index="16">
+     <string>solicitanteDepartamento</string>
+    </void>
+    <void index="17">
+     <string>solicitanteEmail</string>
+    </void>
+    <void index="18">
+     <string>switchEventoJaRealizado</string>
+    </void>
+    <void index="19">
+     <string>switchReutilizarDespesas</string>
+    </void>
+    <void index="20">
+     <string>tableItensInseridos</string>
+    </void>
+    <void index="21">
+     <string>tbDataFim</string>
+    </void>
+    <void index="22">
+     <string>tbDataInicio</string>
+    </void>
+    <void index="23">
+     <string>tbEventoCadastrado</string>
+    </void>
+    <void index="24">
+     <string>tbIdContrato</string>
+    </void>
+    <void index="25">
+     <string>tbitemtese</string>
+    </void>
+    <void index="26">
+     <string>tbLocalEvento</string>
+    </void>
+    <void index="27">
+     <string>tbNomeEvento</string>
+    </void>
+    <void index="28">
+     <string>tbNomePessoa</string>
+    </void>
+    <void index="29">
+     <string>tbNumeroContrato</string>
+    </void>
+    <void index="30">
+     <string>tbProtocolo</string>
+    </void>
+    <void index="31">
+     <string>tbSaldoContrato</string>
+    </void>
+    <void index="32">
+     <string>tbSinteseEvento</string>
+    </void>
+    <void index="33">
+     <string>tbTipoEvento</string>
+    </void>
+    <void index="34">
+     <string>tbValorContrato</string>
+    </void>
+    <void index="35">
+     <string>tbValorTotalDespesas</string>
+    </void>
+    <void index="36">
+     <string>tbVencimentoContrato</string>
+    </void>
+    <void index="37">
+     <string>valorDespesa</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
    <string>processosServidor</string>
    <object class="java.util.ArrayList">
     <void method="add">

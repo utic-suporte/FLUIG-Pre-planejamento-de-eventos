@@ -59,7 +59,7 @@ function setSelectedZoomItem(selectedItem) {
         }else{
             FLUIGC.toast({
                 title: 'Atenção',
-                message : "Não foi possível encontra eventos nas solicitações de planejamento de eventos.", 
+                message : "Não foi possível encontrar o evento nas solicitações de planejamento de eventos.", 
                 type : "warning",
                 timeout: 10000
             });

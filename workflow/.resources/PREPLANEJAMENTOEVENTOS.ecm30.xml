@@ -4,7 +4,7 @@
       <companyId>1</companyId>
       <processId>PREPLANEJAMENTOEVENTOS</processId>
     </processDefinitionPK>
-    <processDescription>Pré-planejmaneto de eventos</processDescription>
+    <processDescription>Pré-planejamento de eventos</processDescription>
     <instruction></instruction>
     <active>true</active>
     <publicProcess>false</publicProcess>
@@ -27,7 +27,7 @@
   <ProcessDefinitionVersion>
     <processDefinitionVersionPK>
       <companyId>1</companyId>
-      <processId>Pré-planejmaneto de eventos</processId>
+      <processId>Pré-planejamento de eventos</processId>
       <version>1</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>

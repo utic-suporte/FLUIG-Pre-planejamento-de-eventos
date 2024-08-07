@@ -20,7 +20,7 @@
 	<div class="fluig-style-guide">
 		<form name="form" role="form">
 			<div class="container-fluid">
-				<h1 style="text-align: center;">Contratação de Consultoria e/ou Instrutoria SGF</h1>
+				<h1 style="text-align: center;">Pré-planejamento de evento</h1>
 			</div>
 			<div class="panel panel-default" id="divDadoSolicitacao">
 				<div class="panel-heading">
@@ -50,7 +50,7 @@
 												<span class="input-group-addon">
 													<span class="flaticon flaticon-person"></span>
 												</span>
-												<input type="text" class="form-control" id="tbNomePessoa" name="tbNomePessoa" readonly>
+												<input type="text" class="form-control" id="solicitanteNome" name="solicitanteNome" readonly>
 											</div>
 										</div>
 										<div class="form-group col-md-4">
@@ -60,19 +60,19 @@
 													<span class="flaticon flaticon-mail"></span>
 												</span>
 												<input type="text" class="form-control" id="solicitanteEmail" name="solicitanteEmail" readonly>
-												<input type="hidden" class="form-control" id="solicitanteChapa" name="solicitanteChapa" readonly>
+												<input type="hidden" class="form-control" id="solicitanteChapaRM" name="solicitanteChapaRM" readonly>
+												<input type="hidden" class="form-control" id="gerenteChapaRM" name="gerenteChapaRM" readonly>
+												<input type="hidden" class="form-control" id="diretorChapaRM" name="diretorChapaRM" readonly>
+												<input type="hidden" class="form-control" id="solicitanteUsuarioCod" name="solicitanteUsuarioCod" readonly>
+												<input type="hidden" class="form-control" id="tbDiretorUsuarioCod" name="tbDiretorUsuarioCod" readonly>
+												<input type="hidden" class="form-control" id="nmDiretor" name="nmDiretor" readonly>
 												<input type="hidden" class="form-control" id="itensContratosJson" name="itensContratosJson" readonly>
 											</div>	                                                       
 										</div>
 										<div class="col-xs-12 col-sm-6 col-md-2">
 											<div class="form-group fs-cursor-pointer">
 												<label>Data da Solicitação</label><span class="required text-danger"><strong>*</strong></span>
-												<div class="input-group date">
-													<input class="form-control" id="dataEvento" name="dataEvento" type="text" readonly>
-													<span class="input-group-addon"> <span
-														class="fluigicon fluigicon-calendar"></span>
-													</span>
-												</div>
+												<input class="form-control" id="dataSolicitacao" name="dataSolicitacao" type="text" readonly>
 											</div>
 										</div>
 
@@ -86,7 +86,7 @@
 									</div>
 									<div class="row">	                           
 										<div class="form-group col-md-4">
-											<input class="form-control" type="hidden" id="CODGERENTE" name="CODGERENTE" />
+											<input class="form-control" type="hidden" id="tbGerenteUsuarioCod" name="tbGerenteUsuarioCod" />
 											<label class="control-label">Gerente</label>
 											<div class="input-group">
 												<span class="input-group-addon">
@@ -317,7 +317,8 @@
 																					</div>
 																					<div class="col-md-2 form-group">
 																						<label for="evento">Valor (R$)</label>
-																						<input type="text" class="form-control" name="valorDespesa" id="valorDespesa"/>
+																						<input type="text" class="form-control" name="valorDespesa" id="valorDespesa" 
+																						onkeyup="mascaraValor2(this);" onblur="somaValorTotalDespesas();"/>
 																					</div>
 																				</div>
 																					
@@ -346,7 +347,8 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>Valor total das despesas (R$)</label>
-												<input class="form-control" id="tbValorTotalDespesas" name="tbValorTotalDespesas" type="text" readonly>
+												<input class="form-control" id="tbValorTotalDespesas" name="tbValorTotalDespesas" 
+												type="text" style="color: red;" readonly>
 											</div>
 										</div>
 									</div>
@@ -550,6 +552,72 @@
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="collapseDivDadosGerente" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="panel panel-info" id="autorizar_evento_gerente">
+							<div class="panel-heading">
+								<h3 class="panel-title">					    			
+									<a class="collapse-icon up" data-toggle="collapse" data-parent="#accordion" href="#collapseDivGerente">
+										<span class="flaticon flaticon-person-add icon-sm"></span> AUTORIZAR EVENTO (GERENTE)
+									</a>
+								</h3>
+							</div>
+							
+							<div id="collapseDivGerente" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="row" style="margin-bottom: 1px">
+										<div class="row">
+											<div class="col-md-4"><label>Gerente Imediato</label>
+												<input type="text" class="form-control" id="tbGerenteImediato"
+													name="tbGerenteImediato" readonly/>
+											</div>
+											<div class="col-md-4"><label>Agência</label>
+												<input type="text" class="form-control" id="tbAgenciaGerente"
+													name="tbAgenciaGerente" readonly/>
+											</div>
+											<div class="col-md-2"><label>Matrícula</label>
+												<input type="text" class="form-control" id="tbMatriculaGerente"
+													name="tbMatriculaGerente" readonly/>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group fs-cursor-pointer">
+													<label>Data da Autorização</label>
+														<input class="form-control" id="tbDataAutorizacaoGerente" name="tbDataAutorizacaoGerente" 
+														type="text" readonly>
+												</div>
+											</div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col-md-6">
+												<label>Autoriza a prestação de contas do evento?</label>
+												<div class="custom-radio custom-radio-success custom-radio-lg">
+													<input type="radio" name="tbPagamentoAprovadoGerente" value="Sim" id="tbPagamentoAprovadoGerente1" 
+													onclick="$('#motivonao').hide();" checked>
+													<label for="tbPagamentoAprovadoGerente1">Sim</label>
+												</div>
+												<div class="custom-radio custom-radio-success custom-radio-lg">
+													<input type="radio" name="tbPagamentoAprovadoGerente" value="Nao" id="tbPagamentoAprovadoGerente2" 
+													onclick="$('#motivonao').show();">
+													<label for="tbPagamentoAprovadoGerente2">Não</label>
+												</div>
+											</div>
+											<div class="col-md-6" id="motivonao" style="display: none;">
+												<label>Descrever o motivo da não autorização:</label>
+												<div class="custom-radio custom-radio-success custom-radio-lg">
+													<textarea class="form-control" rows="3" name="tbMotivoDevolucaoGerente" id="tbMotivoDevolucaoGerente"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>

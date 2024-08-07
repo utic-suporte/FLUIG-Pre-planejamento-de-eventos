@@ -9,6 +9,7 @@ function insereDespesa() {
 
 function removeDespesa(elemento) {
 	fnWdkRemoveChild(elemento);
+	somaValorTotalDespesas();
 }
 
 function removeContrato(elemento) {
@@ -72,6 +73,7 @@ function atualizaCampoItensContratosJson(){
 	$("#itensContratosJson").val(JSON.stringify(itemcontjson));
 
 }
+
 function maskValor(i) {
 	var v = i.value.replace(/\D/g, '');
 	v = (v / 100).toFixed(2) + '';
@@ -79,7 +81,7 @@ function maskValor(i) {
 	v = v.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
 	v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
 	i.value = v;
-};
+}
 
 function calculaTotalTotal(objeto) {
 		
@@ -132,7 +134,16 @@ function mascaraValor(i) {
 	v = v.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
 	v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
 	return v;
-};
+}
+
+function mascaraValor2(i) {
+	var v = i.value.replace(/\D/g, '');
+	v = (v / 100).toFixed(2) + '';
+	v = v.replace(".", ",");
+	v = v.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+	v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
+	i.value = v;
+}
 
 function carregarDespesas(){
 
