@@ -10,8 +10,6 @@ function displayFields(form,customHTML){
 	customHTML.append("const MODO = '" + mode + "';");
 	customHTML.append("const EMAIL = '" + fluigAPI.getUserService().getCurrent().getEmail() + "';");
 	customHTML.append("</script>");
-
-	form.setHideDeleteButton(true);
 	
 	form.setVisibleById("collapseDivDadosGerente", false);
 	
@@ -64,14 +62,14 @@ function carregaDadosColaborador(form) {
 	if(usuarioLogado.getEmail() == "ronycley@bitsolucoes.info"){
 		form.setValue('solicitanteAgencia', "Agencia Regional Campina Granbde");
 		form.setValue('solicitanteDepartamento', "SEDE-PB");
-		form.setValue('solicitanteUsuarioCod', "vsgpbo9x3lf5mgkr1531148008425");
-		form.setValue('tbGerenteUsuarioCod',  "vsgpbo9x3lf5mgkr1531148008425");
-		form.setValue('tbDiretorUsuarioCod',  "vsgpbo9x3lf5mgkr1531148008425");
-		form.setValue('nmDiretor', "Suporte CG");
-		form.setValue('nmGerente', "Suporte CG");
-		form.setValue('solicitanteChapaRM', "1234");
-		form.setValue('gerenteChapaRM', "1234");
-		form.setValue('diretorChapaRM', "1234");
+		form.setValue('solicitanteUsuarioCod', "ronycley");
+		form.setValue('tbGerenteUsuarioCod',  "ronycley");
+		form.setValue('tbDiretorUsuarioCod',  "ronycley");
+		form.setValue('nmDiretor', "Ronycley Agra");
+		form.setValue('nmGerente', "Ronycley Agra");
+		form.setValue('solicitanteChapaRM', "012340");
+		form.setValue('gerenteChapaRM', "012340");
+		form.setValue('diretorChapaRM', "012340");
 	}
 }
 

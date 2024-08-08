@@ -1,5 +1,4 @@
 function carregarDespesas(){
-
     $("#div_tabelaDespesasCarregadas").show();
 }
 
@@ -23,12 +22,7 @@ function insereContrato() {
 function insereItemContrato(linhaItem) {
 	let index = $(linhaItem).attr("name").split("___")[1];
 
-	/*
-	let contratoSelecinado = $(linhaItem).closest('#tbodyContrato').find("[name^='rm_contratosativos___']");
-	let indexContrato = contratoSelecinado.attr("name").split("___")[1];
-	*/
 	let qtdItens = $("#itensInseridos___"+index+" > tr").length;
-	//console.log(qtdItens);
 	$("#itensInseridos___"+index).append(
 		"<tr>"+
 			"<td>"+$("#rm_itemcontrato___"+index).find(":selected").val()+"</td>"+

@@ -5,43 +5,51 @@ function validateForm(form){
 	var mode = form.getFormMode();
 	var atividade = parseInt(getValue("WKNumState"));
 	
+	var errorMsg = "";
+	var lineBreaker = "<br>";
+	var topic = "->";
 	if (atividade == INICIO_0 || atividade == INICIO_4) {
 
 		if ((form.getValue("solicitanteNome") == null || form.getValue("solicitanteNome") == "") ) {
-	        throw "Informe o nome do solicitante";
+	        errorMsg += topic+"Informe o nome do solicitante"+lineBreaker;
 	    }
 		if ((form.getValue("solicitanteEmail") == null || form.getValue("solicitanteEmail") == "") ) {
-	        throw "Informe o email do solicitante";
+			errorMsg += topic+"Informe o email do solicitante"+lineBreaker;
 	    }
 		if ((form.getValue("solicitanteAgencia") == null || form.getValue("solicitanteAgencia") == "") ) {
-	        throw "Informe a agência do solicitante";
+			errorMsg += topic+"Informe a agência do solicitante"+lineBreaker;
 	    }
 		if ((form.getValue("tbNomeEvento") == null || form.getValue("tbNomeEvento") == "") ) {
-	        throw "Escolha um evento já realizado ou informe o nome do novo evento";
+			errorMsg += topic+"Escolha um evento já realizado ou informe o nome do novo evento"+lineBreaker;
 	    }
 		if ((form.getValue("tbLocalEvento") == null || form.getValue("tbLocalEvento") == "") ) {
-	        throw "Informe o local do evento";
+			errorMsg += topic+"Informe o local do evento"+lineBreaker;
 	    }
 		if ((form.getValue("tbSinteseEvento") == null || form.getValue("tbSinteseEvento") == "") ) {
-	        throw "Informe a síntese do evento";
+			errorMsg += topic+"Informe a síntese do evento"+lineBreaker;
 	    }
 		if ((form.getValue("tbTipoEvento") == null || form.getValue("tbTipoEvento") == "") ) {
-	        throw "Informe o tipo do evento";
+			errorMsg += topic+"Informe o tipo do evento"+lineBreaker;
 	    }
 		if ((form.getValue("tbDataInicio") == null || form.getValue("tbDataInicio") == "") || 
 			form.getValue("tbDataFim") == null || form.getValue("tbDataFim") == "") {
-	        throw "Informe o período de início e fim do evento.";
+			errorMsg += topic+"Informe o período de início e fim do evento"+lineBreaker;
 		}
 
 		var indexesRat = form.getChildrenIndexes("despesas");
 		if (indexesRat.length == 0) {
-			throw "<strong>Insira pelo menos uma despesa</strong>";
+			errorMsg += topic+ "Insira pelo menos uma despesa"+lineBreaker;
 		}
 		
 		var indexesRatC = form.getChildrenIndexes("contratos");
 		if (indexesRatC.length == 0) {
-			throw "<strong>Insira pelo menos um contrato</strong>";
+			errorMsg += topic+"Insira pelo menos um contrato"+lineBreaker;
 		}
+
+		if ((form.getValue("itensContratosJson") == null || form.getValue("itensContratosJson") == "") ) {
+			errorMsg += topic+"Insira itens de contratos"+lineBreaker;
+	    }
+		
 		/*
 		var datas = form.getValue("tbDataInicio");
 		var datap = form.getValue("tbDataFim");
@@ -101,42 +109,9 @@ function validateForm(form){
 
 	}
 	
-	if (atividade == PARECER_UGAL) {
-		if ((form.getValue("deferidoUGAL") == null || form.getValue("deferidoUGAL") == "") && (getValue('WKNumProces') == null || (getValue('WKNumProces') > 0 && getValue('WKCompletTask') == 'true'))) {
-	        throw "Favor, informar o parecer.";
-	    }
-		if ((form.getValue("parecerUGAL") == null || form.getValue("parecerUGAL") == "") && (getValue('WKNumProces') == null || (getValue('WKNumProces') > 0 && getValue('WKCompletTask') == 'true'))) {
-	        throw "Favor, informar a observação.";
-	    }
-	}
-	
-	if (atividade == PARECER_UMCC) {
-		if ((form.getValue("deferidoUMCC") == null || form.getValue("deferidoUMCC") == "") && (getValue('WKNumProces') == null || (getValue('WKNumProces') > 0 && getValue('WKCompletTask') == 'true'))) {
-	        throw "Favor, informar o parecer.";
-	    }
-		if ((form.getValue("parecerUMCC") == null || form.getValue("parecerUMCC") == "") && (getValue('WKNumProces') == null || (getValue('WKNumProces') > 0 && getValue('WKCompletTask') == 'true'))) {
-	        throw "Favor, informar a observação.";
-	    }
-	}
-
-	if (atividade == PARECER_GERENTE) {
-		if ((form.getValue("deferidoGerente") == null || form.getValue("deferidoGerente") == "") && (getValue('WKNumProces') == null || (getValue('WKNumProces') > 0 && getValue('WKCompletTask') == 'true'))) {
-	        throw "Favor, informar o parecer.";
-	    }
-	}
-
-	if (atividade == DIREX) {
-		if ((form.getValue("deferidoDiretor") == null || form.getValue("deferidoDiretor") == "") && (getValue('WKNumProces') == null || (getValue('WKNumProces') > 0 && getValue('WKCompletTask') == 'true'))) {
-	        throw "Favor, informar o parecer.";
-	    }
-	}
-
-	if (atividade == INFORMAR_APROVACAO) {
-		if(form.getValue("deferidoAprovacao") == "D"){
-			if(parseFloat(form.getValue("tbTotalDespesas")) > 15000 && (form.getValue("numseap") == null || form.getValue("numseap") == "")){
-				throw "<strong>O total de despesas ultrapassa o valor de R$ 15.000,00, por isso, vocÊ deve informar o Número da autorização SEAP.</strong>";
-			}
-		}
+	if(errorMsg != ""){
+		throw "<b>Validação da solicitação</b>:"+lineBreaker+
+		errorMsg;
 	}
 	
 }

@@ -10,8 +10,6 @@ $('#colabzoom').children().one('click', function (e) {
 function setSelectedZoomItem(selectedItem) {
 
     var zoomitm = selectedItem.inputName;
-    var ProjetoLinha = zoomitm.substring(0, 9);
-    var AcaoLinha = zoomitm.substring(0, 6);
 
     var contratoLinha = zoomitm.substring(0, 18);
     var itemlinha = zoomitm.substring(0,15);
@@ -68,48 +66,6 @@ function setSelectedZoomItem(selectedItem) {
 
 }
 
-function atualizaConsultaCnpj(){
-    var oiObjField = document.all["cpfconsulta"].value;
-    
-    if(oiObjField != null){
-        reloadZoomFilterValues("rm_fcfo", 'CGCCFO,'+oiObjField);
-    }
-}
-
-function atribuirCamposContratos(selectedItem) {
-
-    $("#tbNumeroContrato").val(selectedItem.CODIGOCONTRATO);
-    $("#tbIdContrato").val(selectedItem.IDCNT);
-    $("#CPFOuCNPJContratos").val(selectedItem.CNPJ);
-    $("#tbValorContrato").val(selectedItem.VALORCONTRATO);
-    $("#tbSaldoContrato").val(selectedItem.SALDO);
-    $("#tbVencimentoContrato").val(selectedItem.DATAFIM);
-    $("#nomeFornecedorContratos").val(selectedItem.NOMEFANTASIA);
-}
-
-function manipularPaineis(selectedItem) {
-    const fonecedorPessoaFisica = $("#fornecedorPessoaFisica");
-    const fonecedorPessoaJuridica = $("#fornecedorPessoaJuridica");
-    $("#painelNomeFornecedorContratos").show();
-    $("#painelNomeFornecedorContratos").prop("hidden", false);
 
 
-    fonecedorPessoaJuridica.hide();
-    fonecedorPessoaFisica.hide();
 
-    if (selectedItem.CNPJ.length > 14) {
-
-        fonecedorPessoaFisica.hide();
-        fonecedorPessoaFisica.prop("hidden", true);
-
-        fonecedorPessoaJuridica.show();
-        fonecedorPessoaJuridica.prop("hidden", false);
-    } else {
-        fonecedorPessoaFisica.show();
-        fonecedorPessoaFisica.prop("hidden", false);
-
-        fonecedorPessoaJuridica.hide();
-        fonecedorPessoaJuridica.prop("hidden", true);
-
-    }
-}

@@ -48,9 +48,6 @@ $("document").ready(function(){
 				});
 		}
 	});
-    
-	/** Adiciona um contrato na tabela de contratos */
-	insereContrato();
 	
 });
 
